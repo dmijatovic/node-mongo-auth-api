@@ -1,10 +1,10 @@
-# Node backend API using JWT, MongoDB and Express
+# Node backend API using JWT, Passport, MongoDB and Express
 
-This sample API is created with Node.js (v8), Express and MongoDB. The authentication uses JWT.
+This sample API is created with Node.js (v8), Express and MongoDB. The authentication uses JWT & passport.js with local and jwt strategy.
 
 ## Requirements 
 
-- Docker to run mongodb container, othwerwise istall mongogb and run on default port
+- Docker to run mongodb container, othwerwise istalled mongodb running on the default port
 - Node.js v8. During development v8 LTE version of NodeJS is used. In some scripts ES6 syntax is used like arrow functions and promisses. Babel is not used.
 
 ## Docker
@@ -12,6 +12,16 @@ This sample API is created with Node.js (v8), Express and MongoDB. The authentic
 Docker container is used to setup NodeJS and MongoDB. The data is persisted in the folder mongo/data. The mongodb models are in model folder. 
 
 ```bash
+
+  # start docker-compose up for mongodb & mongo-express (web based admin app in node)
+  npm run docker:up
+  # OR simply run docker command and add -d for detached mode
+  docker-compose up -d
+
+  # STOP and remove close and remove containers and network
+  npm run docker:down
+  # OR run docker-compose command 
+  docker-compose down
   #start mongodb docker instance in deamon mode  
   npm run mongo:start
 
