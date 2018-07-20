@@ -12,6 +12,16 @@ This sample API is created with Node.js (v8), Express and MongoDB. The authentic
 Docker container is used to setup NodeJS and MongoDB. The data is persisted in the folder mongo/data. The mongodb models are in model folder. 
 
 ```bash
+
+  # start docker-compose up for mongodb & mongo-express (web based admin app in node)
+  npm run docker:up
+  # OR simply run docker command and add -d for detached mode
+  docker-compose up -d
+
+  # STOP and remove close and remove containers and network
+  npm run docker:down
+  # OR run docker-compose command 
+  docker-compose down
   #start mongodb docker instance in deamon mode  
   npm run mongo:start
 
