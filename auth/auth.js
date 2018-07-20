@@ -5,6 +5,7 @@
  */
 
 const User = require('../mongo/model/user');
+const jwt = require('./jwt');
 /**
  * Signup - create new user
  * POST request
@@ -47,12 +48,30 @@ exports.signup = (req, res, next) => {
   //save new record to db
   user.save((err)=>{
     if (err){return next(err)};
-
     //save completed
     //send info back
     res.json({
       status: 200,
-      msg: "OK" 
+      token: jwt.createToken(user)
     });
+  });
+}
+
+
+/**
+ * Signin route
+ * Login check already takes place in the middleware using passport.js
+ * If users reach this function he/she already has proper username and pass
+ * found in mongodb. See passport localLogin strategy. Using passport middleware
+ * we pass user model into request body.
+ * @param {*} req.user: object passed by passport (localLogin strategy) 
+ * @param {*} res 
+ * @param {*} next 
+ */
+exports.sigin = (req, res, next) => {
+  //res.send("You are signed in!");
+  res.json({
+    status: 200,
+    token: jwt.createToken(req.user)
   });
 }

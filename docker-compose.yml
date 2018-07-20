@@ -1,0 +1,40 @@
+# version 3 of docker compose used
+version: '3'
+
+# services
+services:
+  # mongoDB database service
+  # exposed on port 27017
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    # bind mount data file to data folder on local
+    # machine in order to persist data  
+    volumes:
+      - ./mongo/data:/data/db
+    networks: 
+      - net
+  # mongo-express admin interface
+  # exposed on port 8081
+  # connecting to 
+  man:
+    image: mongo-express
+    # define that service depends on
+    # mongodb (db) begin started first
+    depends_on:
+      - "db"
+    # provide database host name as env parameter
+    # as we compose 2 containers into one mongo_db network
+    # db hostname by default becomes {project-name}_{service-name}_{instance}
+    # in this case: mongo-api_db_1
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo-api_db_1
+    expose:
+      - "8081"
+    ports: 
+      - "8081:8081"
+    networks: 
+      - net
+networks:
+  net:

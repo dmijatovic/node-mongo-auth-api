@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
     "debug": "nodemon --inspect-brk index.js",
+    "docker": "docker-compose up",
     "mongo:start": "docker run --name=mongodb-1 --rm -p=27017:27017 -v=/home/dusan/test/node/mongo-api/mongo/data:/data/db -d mongo",
     "mongo:stop": "docker stop mongodb-1"
   },
@@ -14,7 +15,8 @@
     "node",
     "mongodb",
     "api",
-    "express"
+    "express",
+    "docker"
   ],
   "author": "Dusan Mijatovic",
   "license": "ISC",
@@ -22,7 +24,11 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "jwt-simple": "^0.5.1",
     "mongoose": "^5.2.4",
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
   }
 }
