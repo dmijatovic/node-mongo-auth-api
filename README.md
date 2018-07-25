@@ -5,7 +5,7 @@ This sample API is created with Node.js (v8), Express and MongoDB. The authentic
 ## Requirements 
 
 - Docker to run mongodb container, othwerwise istalled mongodb running on the default port
-- Node.js v8. During development v8 LTE version of NodeJS is used. In some scripts ES6 syntax is used like arrow functions and promisses. Babel is not used.
+- Node.js v8. During development v8 LTE version of NodeJS is used. ES6 syntax is used like arrow functions and promisses in some scripts. Babel is not used here because version 8 supports ES6.
 
 ## Docker
 
@@ -37,7 +37,7 @@ After closing project run npm install to install all dependencies. If you need t
 
 ```bash
   # nodemon & express
-  npm i -S express body-parser  
+  npm i -S express body-parser cors  
 
   # mongoDB 
   npm i -S mongoose
@@ -59,14 +59,16 @@ To start development you need to run at least 2 npm commands, 1 for mongodb dock
 
 ```bash
 
-  # 1. start mongodb & admin interface docker containers
+  # start mongodb & admin interface docker containers
   # bash window will be in interactive mode
-  npm run docker
+  # use ctrl+C to stop services
+  npm run docker:up
 
   # 2. start nodemon on nodejs app using index.js
   npm run dev
 
-  # 3 when done close containers 
-  npm run stop
+  # 3 when done remove containers
+  # mongodb data will be saved in mongo/data folder 
+  npm run docker:down
 
 ```
