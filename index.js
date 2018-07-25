@@ -5,10 +5,11 @@ const router = require('./router');
 const port = process.env.PORT || 3001;
 const mongoose = require('mongoose');
 const mdb = 'mongodb://localhost/auth';
-
+const cors = require('cors');
 //initialize express server
 let api = express();
-
+//allow access from anywhere
+api.use(cors());
 //use json body parser
 api.use(bodyParser.json());
 
